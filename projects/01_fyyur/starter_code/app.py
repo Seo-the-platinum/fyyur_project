@@ -98,7 +98,7 @@ def venues():
         if venue.city == place.city and venue.state == place.state]
       })
   return render_template('pages/venues.html', areas=locals);
-
+@csrf.exempt
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
   # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
@@ -233,7 +233,7 @@ def artists():
   data = Artist.query.all()
 
   return render_template('pages/artists.html', artists=data)
-
+@csrf.exempt
 @app.route('/artists/search', methods=['POST'])
 def search_artists():
   # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
