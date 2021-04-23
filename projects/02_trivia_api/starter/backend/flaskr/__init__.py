@@ -209,12 +209,7 @@ def create_app(test_config=None):
   @app.route('/quizzes', methods=['POST'])
   def get_quiz_question():
       category = request.get_json()['quiz_category']
-      print('check value here', category['id'])
       previous_questions = request.get_json().get('previous_questions', [])
-      valid_category = Category.query.filter(Category.id == category['id']).one_or_none()
-
-      if valid_category == None:
-          abort(422)
 
       if category['id'] == 0:
           questions = Question.query.filter(
@@ -222,6 +217,9 @@ def create_app(test_config=None):
           question = random.choice(questions)
 
       else:
+          valid_category = Category.query.filter(Category.id == category['id']).one_or_none()
+          if valid_category == None:
+              abort(422)
           questions = Question.query.filter(
           Question.category == category['id']).filter(
           Question.id.notin_(previous_questions)).all()
