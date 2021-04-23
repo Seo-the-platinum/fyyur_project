@@ -141,6 +141,7 @@ def create_app(test_config=None):
 
       return jsonify({
         'success': True,
+        'question': new_question.format(),
       })
   '''
   @TODO:
