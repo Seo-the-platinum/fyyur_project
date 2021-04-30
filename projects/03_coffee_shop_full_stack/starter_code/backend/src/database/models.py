@@ -38,9 +38,7 @@ def db_drop_and_create_all():
         title='water',
         recipe='[{"name": "water", "color": "blue", "parts": 1}]'
     )
-
-
-drink.insert()
+    drink.insert()
 # ROUTES
 
 '''
@@ -57,7 +55,7 @@ class Drink(db.Model):
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
     recipe = Column(String(180), nullable=False)
-
+    
     '''
     short()
         short form representation of the Drink model
